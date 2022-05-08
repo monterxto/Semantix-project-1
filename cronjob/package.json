@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/main/server.js",
-    "dev": "ts-node-dev ./src/infra/jobs/semantix/getUsersToDb.ts",
+    "dev": "ts-node-dev src/main/server.ts",
     "build": "rimraf dist && tsc -p tsconfig-build.json",
     "test": "jest"
   },
@@ -14,12 +14,17 @@
   "license": "ISC",
   "dependencies": {
     "bullmq": "^1.81.4",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "dotenv": "^16.0.0",
     "express": "^4.17.1",
     "module-alias": "^2.2.2",
     "mongodb": "^4.2.1",
-    "mongoose": "^6.1.0"
+    "mongoose": "^6.1.0",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
+    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.0.3",
     "@types/module-alias": "^2.0.1",
