@@ -12,7 +12,11 @@ export class ScheduleTaskUseCase {
   async execute(scheduler: IScheduleTaskDTO): Promise<void> {
     await this.schedulerRepository.create(scheduler);
     if (scheduler.enabled) {
-      await this.messageQueue.sendMessage(scheduler.job, scheduler.data, scheduler?.repeat);
+      await this.messageQueue.sendMessage(
+        scheduler.job,
+        scheduler.data,
+        scheduler?.repeat
+      );
     }
   }
 }

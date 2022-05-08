@@ -1,9 +1,15 @@
-import { RepeatOptions } from "@/domain/scheduler/types";
+import { IRepeatOptions } from "@/domain/scheduler/types";
 
 export type QueueOptions = {
-  repeat?: RepeatOptions;
-  delay?: number;
-  removeOnFail?: boolean;
-  attempts?: number;
-  timeout?: number;
-}
+  connection: {
+    host: string;
+    port: number;
+  };
+  defaultJobOptions: {
+    repeat?: IRepeatOptions;
+    delay?: number;
+    removeOnFail?: boolean;
+    attempts?: number;
+    timeout?: number;
+  };
+};

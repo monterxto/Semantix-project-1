@@ -1,7 +1,6 @@
-export type RepeatOptions = {
+export interface IRepeatOptions {
   cron: string;
   limit?: number;
   startAt?: Date;
   endAt?: Date;
-  timezone?: string;
 };
