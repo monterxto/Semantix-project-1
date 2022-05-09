@@ -1,4 +1,5 @@
 import { IMessageQueue } from "@/domain/@shared/message-queue";
+import { IJobsOptions } from "@/domain/@shared/message-queue/jobs-options.interface";
 import { IRepeatOptions } from "@/domain/scheduler/types";
 import { Queue } from "bullmq";
 
@@ -8,9 +9,9 @@ export class MessageQueue implements IMessageQueue {
   async sendMessage(
     job: string,
     data: any,
-    repeat?: IRepeatOptions
+    opts?: IJobsOptions
   ): Promise<void> {
-    await this.queue.add(job, data, { repeat });
+    await this.queue.add(job, data, opts);
   }
 
   async drain(): Promise<void> {

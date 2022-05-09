@@ -1,16 +1,16 @@
 import { serverError, noContent, badRequest } from "@/application/helpers";
 import { HttpResponse, Validation } from "@/application/protocols";
-import { IScheduleTaskUseCase } from "@/domain/scheduler/usecases/schedule-task";
-export class ScheduleTaskController {
+import { IRemoveRepeatableTaskUseCase } from "@/domain/scheduler/usecases/remove-repeatable-task";
+export class RemoveRepeatableTaskController {
   constructor(
-    private readonly scheduleTaskUseCase: IScheduleTaskUseCase,
+    private readonly removeRepeatableTaskUseCase: IRemoveRepeatableTaskUseCase,
     private readonly validation: Validation
   ) {}
 
   async handle(req: any): Promise<HttpResponse> {
     try {
       await this.validation.validate(req.body);
-      await this.scheduleTaskUseCase.execute(req.body);
+      await this.removeRepeatableTaskUseCase.execute(req.body);
       return noContent();
     } catch (error) {
       if (error instanceof Error) return badRequest(error);

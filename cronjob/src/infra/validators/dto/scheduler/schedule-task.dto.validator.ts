@@ -1,6 +1,7 @@
 import { IScheduleTaskDTO } from "@/domain/scheduler/usecases/schedule-task/dto";
 import {
   IsBoolean,
+  IsISO8601,
   IsNotEmpty,
   IsNotEmptyObject,
   IsObject,
@@ -25,12 +26,11 @@ export class SchedulerTaskDTOValidator implements IScheduleTaskDTO {
   data?: any;
 
   @IsOptional()
-  @IsBoolean()
-  enabled?: boolean = true;
-
-  @IsOptional()
-  @IsNotEmptyObject()
   @ValidateNested()
   @Type(() => RepeatOptionsValidator)
   repeat?: RepeatOptionsValidator;
+
+  @IsOptional()
+  @IsISO8601()
+  delay?: number;
 }

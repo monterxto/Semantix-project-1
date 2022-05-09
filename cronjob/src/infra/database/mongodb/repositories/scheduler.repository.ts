@@ -2,6 +2,7 @@ import { ISchedulerRepository } from "@/domain/scheduler/repository";
 import { SchedulerModel, SchedulerDocument } from "../entities/scheduler";
 import { IScheduleTaskDTO } from "@/domain/scheduler/usecases/schedule-task/dto";
 import { Scheduler } from "@/domain/scheduler/entities";
+import { IRepeatOptions } from "@/domain/scheduler/types";
 
 export class SchedulerRepository implements ISchedulerRepository {
   async create(scheduler: IScheduleTaskDTO): Promise<void> {
@@ -43,6 +44,18 @@ export class SchedulerRepository implements ISchedulerRepository {
   async delete(id: string): Promise<void> {
     try {
       await SchedulerModel.findByIdAndDelete(id);
+    } catch (error) {
+      throw new Error(error as any);
+    }
+  }
+
+  async updateByJobAndRepeat(
+    job: string,
+    repeat: IRepeatOptions,
+    data: Partial<IScheduleTaskDTO>
+  ): Promise<void> {
+    try {
+      await SchedulerModel.updateMany({ job, repeat }, data);
     } catch (error) {
       throw new Error(error as any);
     }

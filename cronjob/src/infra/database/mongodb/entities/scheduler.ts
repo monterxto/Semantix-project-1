@@ -28,16 +28,20 @@ const SchedulerSchema = new Schema(
       required: false,
     },
 
-    enabled: {
-      type: Boolean,
-      required: false,
-      default: true,
+    status: {
+      type: String,
+      required: true,
     },
 
     repeat: {
       type: Object,
       required: false,
     },
+
+    delay: {
+      type: Date,
+      required: false
+    }
   },
   { timestamps: true }
 );
