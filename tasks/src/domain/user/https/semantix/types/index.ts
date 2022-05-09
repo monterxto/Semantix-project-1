@@ -11,7 +11,7 @@ export type address = {
   id: string[];
   userId: string[];
   street: string[];
-  number: object[];
+  number: {_: number}[];
   city: string[];
   state: string[];
   zipcode: string[];

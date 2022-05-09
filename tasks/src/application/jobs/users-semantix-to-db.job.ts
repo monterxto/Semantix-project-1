@@ -8,6 +8,6 @@ export class UsersSemantixToDbJob implements IJob {
   ) {}
 
   public async handle(job: IJobRequest): Promise<void> {
-    await this.usersSemantixToDbUseCase.execute(job);
+    await this.usersSemantixToDbUseCase.execute();
   }
 }
