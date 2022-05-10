@@ -2,5 +2,7 @@ export enum IStatusScheduler {
   SCHEDULED = "SCHEDULED",
   REPEATED = "REPEATED",
   WAITING = "WAITING",
-  FINISHED = "FINISHED"
+  FINISHED = "FINISHED",
+  ACTIVE = "ACTIVE",
+  FAILED = "FAILED",
 }

@@ -7,6 +7,7 @@ export class Scheduler {
   private status: IStatusScheduler;
   private data?: any;
   private repeat?: IRepeatOptions;
+  private delay?: string;
 
   constructor(
     id: string,
@@ -14,7 +15,8 @@ export class Scheduler {
     job: string,
     status: IStatusScheduler,
     data?: any,
-    repeat?: IRepeatOptions
+    repeat?: IRepeatOptions,
+    delay?: string
   ) {
     this.id = id;
     this.name = name;
@@ -22,6 +24,7 @@ export class Scheduler {
     this.status = status;
     this.data = data;
     this.repeat = repeat;
+    this.delay = delay;
 
     this.validate();
   }
@@ -49,20 +52,10 @@ export class Scheduler {
     job: string,
     status: IStatusScheduler,
     data?: any,
-    repeat?: IRepeatOptions
+    repeat?: IRepeatOptions,
+    delay?: string
   ): Scheduler {
-    return new Scheduler(id, name, job, status, data, repeat);
-  }
-
-  public static fromJSON(json: any): Scheduler {
-    return new Scheduler(
-      json.id,
-      json.name,
-      json.job,
-      json.status,
-      json.data,
-      json.repeat
-    );
+    return new Scheduler(id, name, job, status, data, repeat, delay);
   }
 
   public toJSON(): any {
@@ -74,5 +67,9 @@ export class Scheduler {
       status: this.status,
       repeat: this.repeat,
     };
+  }
+
+  public getId(): string {
+    return this.id;
   }
 }

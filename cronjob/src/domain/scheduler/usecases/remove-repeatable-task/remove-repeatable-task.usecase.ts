@@ -1,10 +1,12 @@
-import { Scheduler } from "@/domain/scheduler/entities";
 import { ISchedulerRepository } from "@/domain/scheduler/repository";
 import { IRemoveRepeatableTaskDTO } from "@/domain/scheduler/usecases/remove-repeatable-task/dto";
 import { IMessageQueue } from "@/domain/@shared/message-queue/message-queue.interface";
-import { IStatusScheduler } from "../../types";
+import { IStatusScheduler } from "@/domain/scheduler/types";
+import { IRemoveRepeatableTaskUseCase } from "./remove-repeatable-task.usecase.interface";
 
-export class RemoveRepeatableTaskUseCase {
+export class RemoveRepeatableTaskUseCase
+  implements IRemoveRepeatableTaskUseCase
+{
   constructor(
     private schedulerRepository: ISchedulerRepository,
     private messageQueue: IMessageQueue

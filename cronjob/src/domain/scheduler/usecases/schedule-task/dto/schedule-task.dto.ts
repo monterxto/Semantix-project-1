@@ -6,5 +6,5 @@ export interface IScheduleTaskDTO {
   status?: IStatusScheduler;
   data?: any;
   repeat?: IRepeatOptions;
-  delay?: number;
+  delay?: string;
 }

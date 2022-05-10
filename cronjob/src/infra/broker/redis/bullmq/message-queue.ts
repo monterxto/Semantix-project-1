@@ -18,7 +18,10 @@ export class MessageQueue implements IMessageQueue {
     await this.queue.drain();
   }
 
-  async removeRepeatableMessage(name: string, repeatOpts: IRepeatOptions): Promise<void> {
+  async removeRepeatableMessage(
+    name: string,
+    repeatOpts: IRepeatOptions
+  ): Promise<void> {
     await this.queue.removeRepeatable(name, repeatOpts);
   }
 }

@@ -1,10 +1,14 @@
 import { serverError, noContent, badRequest } from "@/application/helpers";
-import { HttpResponse, Validation } from "@/application/protocols";
+import {
+  HttpResponse,
+  IController,
+  IValidation,
+} from "@/application/protocols";
 import { IScheduleTaskUseCase } from "@/domain/scheduler/usecases/schedule-task";
-export class ScheduleTaskController {
+export class ScheduleTaskController implements IController {
   constructor(
     private readonly scheduleTaskUseCase: IScheduleTaskUseCase,
-    private readonly validation: Validation
+    private readonly validation: IValidation
   ) {}
 
   async handle(req: any): Promise<HttpResponse> {

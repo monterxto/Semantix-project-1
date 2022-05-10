@@ -1,14 +1,15 @@
 import { model, Schema, Types } from "mongoose";
 import { Scheduler } from "@/domain/scheduler/entities";
-import { IRepeatOptions } from "@/domain/scheduler/types";
+import { IRepeatOptions, IStatusScheduler } from "@/domain/scheduler/types";
 
 export type SchedulerDocument = {
   _id: string;
   name: string;
   job: string;
   data: any;
-  enabled: boolean;
+  status: IStatusScheduler;
   repeat?: IRepeatOptions;
+  delay?: Date;
 };
 
 const SchedulerSchema = new Schema(

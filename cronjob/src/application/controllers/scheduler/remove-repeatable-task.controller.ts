@@ -1,10 +1,14 @@
 import { serverError, noContent, badRequest } from "@/application/helpers";
-import { HttpResponse, Validation } from "@/application/protocols";
+import {
+  HttpResponse,
+  IController,
+  IValidation,
+} from "@/application/protocols";
 import { IRemoveRepeatableTaskUseCase } from "@/domain/scheduler/usecases/remove-repeatable-task";
-export class RemoveRepeatableTaskController {
+export class RemoveRepeatableTaskController implements IController {
   constructor(
     private readonly removeRepeatableTaskUseCase: IRemoveRepeatableTaskUseCase,
-    private readonly validation: Validation
+    private readonly validation: IValidation
   ) {}
 
   async handle(req: any): Promise<HttpResponse> {

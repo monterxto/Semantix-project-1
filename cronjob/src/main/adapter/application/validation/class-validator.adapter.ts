@@ -1,8 +1,8 @@
-import { Validation } from "@/application/protocols";
+import { IValidation } from "@/application/protocols";
 import { validate } from "class-validator";
 import { MultipleErrors } from "@/application/errors";
 
-export class adaptClassValidator implements Validation {
+export class adaptClassValidator implements IValidation {
   constructor(private readonly classValidator: any) {}
 
   async validate(req: any): Promise<Error> {

@@ -32,5 +32,5 @@ export class SchedulerTaskDTOValidator implements IScheduleTaskDTO {
 
   @IsOptional()
   @IsISO8601()
-  delay?: number;
+  delay?: string;
 }

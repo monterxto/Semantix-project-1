@@ -1,9 +1,9 @@
-import { Controller } from "@/application/protocols";
+import { IController } from "@/application/protocols";
 import { ScheduleTaskController } from "@/application/controllers/scheduler";
 import { makeScheduleTaskUseCase } from "@/main/factories/domain/scheduler";
 import { makeSchedulerTaskControllerValidation } from "@/main/factories/application/validation/scheduler";
 
-export const makeScheduleTaskController = (): Controller => {
+export const makeScheduleTaskController = (): IController => {
   const scheduleTaskUseCase = makeScheduleTaskUseCase();
   const scheduleTaskControllerValidation =
     makeSchedulerTaskControllerValidation();

@@ -5,9 +5,20 @@ import { Scheduler } from "@/domain/scheduler/entities";
 import { IRepeatOptions } from "@/domain/scheduler/types";
 
 export class SchedulerRepository implements ISchedulerRepository {
-  async create(scheduler: IScheduleTaskDTO): Promise<void> {
+  async create(scheduler: IScheduleTaskDTO): Promise<Scheduler> {
     try {
-      await SchedulerModel.create(scheduler);
+      const schedulerDocument: SchedulerDocument = await SchedulerModel.create(
+        scheduler
+      );
+      return Scheduler.create(
+        schedulerDocument._id.toString(),
+        schedulerDocument.name,
+        schedulerDocument.job,
+        schedulerDocument.status,
+        schedulerDocument?.data,
+        schedulerDocument?.repeat,
+        schedulerDocument?.delay?.toISOString()
+      );
     } catch (error) {
       throw new Error(error as any);
     }
@@ -17,7 +28,15 @@ export class SchedulerRepository implements ISchedulerRepository {
     try {
       const schedulers: SchedulerDocument[] = await SchedulerModel.find();
       return schedulers.map((scheduler) =>
-        Scheduler.fromJSON({ ...scheduler, id: scheduler._id })
+        Scheduler.create(
+          scheduler._id.toString(),
+          scheduler.name,
+          scheduler.job,
+          scheduler.status,
+          scheduler?.data,
+          scheduler?.repeat,
+          scheduler?.delay?.toISOString()
+        )
       );
     } catch (error) {
       throw new Error(error as any);
@@ -27,7 +46,15 @@ export class SchedulerRepository implements ISchedulerRepository {
   async findById(id: string): Promise<Scheduler> {
     try {
       const scheduler: SchedulerDocument = await SchedulerModel.findById(id);
-      return Scheduler.fromJSON({ ...scheduler, id: scheduler._id });
+      return Scheduler.create(
+        scheduler._id.toString(),
+        scheduler.name,
+        scheduler.job,
+        scheduler.status,
+        scheduler?.data,
+        scheduler?.repeat,
+        scheduler?.delay?.toISOString()
+      );
     } catch (error) {
       throw new Error(error as any);
     }

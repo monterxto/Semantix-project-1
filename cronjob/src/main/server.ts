@@ -4,11 +4,13 @@ import { setupApp } from "./config";
 import dotenv from "dotenv";
 dotenv.config();
 import { connectDb } from "@/infra/database/mongodb/setup";
-import { startScheduler } from "@/infra/broker/redis/bullmq/scheduler-queue";
+import { startScheduler } from "@/infra/broker/redis/bullmq/setup/scheduler-queue";
+import { queueListenerManager } from "@/infra/broker/redis/bullmq/setup/listeners-queue";
 
 connectDb().then(
   async () => {
     try {
+      queueListenerManager();
       startScheduler();
       const app = await setupApp();
       app.listen(process.env.SERVER_PORT, () =>
