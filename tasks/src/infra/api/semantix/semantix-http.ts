@@ -11,7 +11,8 @@ export class SemantixHttp implements ISemantixHttp {
   }
 
   public async users(page: number): Promise<user[]> {
-    const result = new Promise<user[]>((resolve, reject) => {
+    await this.sleep();
+    return new Promise<user[]>((resolve, reject) => {
       https
         .get(
           { ...this.options, path: `/v1/users?limit=10&page=${page}` },
@@ -40,17 +41,16 @@ export class SemantixHttp implements ISemantixHttp {
             });
           }
         )
+        .end()
         .on("error", (e) => {
           reject(e);
-        })
-        .end();
+        });
     });
-    await this.sleep();
-    return result;
   }
 
   public async address(userId: string): Promise<address[]> {
-    const result = new Promise<address[]>((resolve, reject) => {
+    await this.sleep();
+    return new Promise<address[]>((resolve, reject) => {
       https
         .get(
           { ...this.options, path: `/v1/users/${userId}/address` },
@@ -84,12 +84,11 @@ export class SemantixHttp implements ISemantixHttp {
         })
         .end();
     });
-    await this.sleep();
-    return result;
   }
 
   public async contacts(userId: string): Promise<contact[]> {
-    const result = new Promise<contact[]>((resolve, reject) => {
+    await this.sleep();
+    return new Promise<contact[]>((resolve, reject) => {
       https
         .get(
           { ...this.options, path: `/v1/users/${userId}/contacts` },
@@ -123,8 +122,6 @@ export class SemantixHttp implements ISemantixHttp {
         })
         .end();
     });
-    await this.sleep();
-    return result;
   }
 
   public async sleep(): Promise<void> {
