@@ -17,8 +17,17 @@ export class UserRepository implements IUserRepository {
     try {
       const users: UserDocument[] = await UserModel.find();
       return users.map((user) => {
-        const address = new Address(user.address, user.addressNumber);
-        return new User(user.fullName, user.email, address, user.phoneNumber);
+        let address;
+        if (user.address && user.addressNumber) {
+          address = new Address(user.address, user.addressNumber);
+        }
+        return new User(
+          user._id,
+          user.fullName,
+          user.email,
+          user.phoneNumber,
+          address
+        );
       });
     } catch (error) {
       throw new Error(error as any);
@@ -28,8 +37,17 @@ export class UserRepository implements IUserRepository {
   async findById(id: string): Promise<User> {
     try {
       const user: UserDocument = await UserModel.findById(id);
-      const address = new Address(user.address, user.addressNumber);
-      return new User(user.fullName, user.email, address, user.phoneNumber);
+      let address;
+      if (user.address && user.addressNumber) {
+        address = new Address(user.address, user.addressNumber);
+      }
+      return new User(
+        user._id,
+        user.fullName,
+        user.email,
+        user.phoneNumber,
+        address
+      );
     } catch (error) {
       throw new Error(error as any);
     }

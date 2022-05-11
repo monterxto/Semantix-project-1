@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fast-csv/format": "^4.3.5",
     "@types/dotenv": "^8.2.0",
     "bullmq": "^1.81.4",
     "dotenv": "^16.0.0",

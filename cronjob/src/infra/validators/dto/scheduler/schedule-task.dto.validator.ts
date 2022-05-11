@@ -1,6 +1,10 @@
-import { IScheduleTaskDTO } from "@/domain/scheduler/usecases/schedule-task/dto";
+import {
+  IScheduleTaskDTO,
+  JobsNames,
+} from "@/domain/scheduler/usecases/schedule-task/dto";
 import {
   IsBoolean,
+  IsIn,
   IsISO8601,
   IsNotEmpty,
   IsNotEmptyObject,
@@ -17,9 +21,10 @@ export class SchedulerTaskDTOValidator implements IScheduleTaskDTO {
   @IsString()
   name: string;
 
+  @IsIn([JobsNames.CREATE_REPORTS_TO_GOFILE, JobsNames.USERS_SEMANTIX_TO_DB])
   @IsNotEmpty()
   @IsString()
-  job: string;
+  job: JobsNames;
 
   @IsOptional()
   @IsObject()
