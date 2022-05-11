@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  cronjob:
+    build: ./cronjob
+    container_name: cronjob-app
+    volumes:
+      - ./cronjob:/home/node/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    command: >
+      sh -c "npm i && npm run dev"
+    links:
+      - db
+      - redis
+    environment:
+      - USER_DB=root
+      - PASS_DB=root
+      - PORT_DB=3000
+
+  tasks:
+    build: ./tasks
+    container_name: tasks
+    volumes:
+      - ./tasks:/home/node/app
+    command: >
+      sh -c "npm i && npm run dev"
+
+  db:
+    image: mongo:5.0.8
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - 27017:27017
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - 6379:6379
