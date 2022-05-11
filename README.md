@@ -17,6 +17,8 @@ body: {
 ```
 The cron field is the crontab format, the job field has two options (it can be easily extended) of tasks the `UsersSemantixToDb` that takes all the users of the api and saves in the database, and the `CreateReportsToGofile` task that takes all database users, transform it into a csv file and upload it to the go file api.
 
+I kept the .env file for easier testing
+
 If you have any questions I'm at your disposal =D
 
 ## Start Application
