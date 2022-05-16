@@ -31,6 +31,7 @@
     "@types/mongoose": "^5.11.97",
     "@types/node": "^16.11.12",
     "jest": "^27.4.3",
+    "jest-mock-extended": "^2.0.6",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.1.1",
     "ts-node-dev": "^1.1.8",
