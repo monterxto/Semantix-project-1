@@ -72,4 +72,16 @@ export class Scheduler {
   public getId(): string {
     return this.id;
   }
+
+  public getName(): string {
+    return this.name;
+  }
+
+  public getJob(): string {
+    return this.job;
+  }
+
+  public getStatus(): IStatusScheduler {
+    return this.status;
+  }
 }
