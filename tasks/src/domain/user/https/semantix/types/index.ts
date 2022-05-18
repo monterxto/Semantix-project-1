@@ -8,20 +8,20 @@ export type user = {
 };
 
 export type address = {
-  id: string[];
-  userId: string[];
-  street: string[];
-  number: {_: number}[];
-  city: string[];
-  state: string[];
-  zipcode: string[];
-  country: string[];
+  id?: string[];
+  userId?: string[];
+  street?: string[];
+  number?: {_: number}[];
+  city?: string[];
+  state?: string[];
+  zipcode?: string[];
+  country?: string[];
 };
 
 export type contact = {
-  id: string[];
-  userId: string[];
-  name: string[];
-  email: string[];
-  phoneNumber: string[];
+  id?: string[];
+  userId?: string[];
+  name?: string[];
+  email?: string[];
+  phoneNumber?: string[];
 };
